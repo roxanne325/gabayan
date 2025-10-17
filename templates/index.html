@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <h1>Welcome to the School Library 📚</h1>
+    <p>Explore, borrow, and manage books with ease — your learning hub is here.</p>
+    <a href="{{ url_for('dashboard') }}" class="discover-btn">Go to Dashboard</a>
+</section>
+
+<section class="discover-section">
+    <h2>Discover More</h2>
+    <div class="discover-container">
+
+        <div class="discover-card">
+            <h3>📖 Manage Books</h3>
+            <p>Add, edit, and view all available and borrowed books in one place.</p>
+            <a href="{{ url_for('books') }}" class="discover-btn">View Books</a>
+        </div>
+
+        <div class="discover-card">
+            <h3>👩‍🎓 View Students</h3>
+            <p>Monitor all registered students and their borrowing records.</p>
+            <a href="{{ url_for('students') }}" class="discover-btn">View Students</a>
+        </div>
+
+        <div class="discover-card">
+            <h3>⏳ Pending Returns</h3>
+            <p>Track overdue and pending books that need to be returned.</p>
+            <a href="{{ url_for('pending') }}" class="discover-btn">Check Pending</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

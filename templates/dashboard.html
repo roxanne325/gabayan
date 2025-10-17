@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>📊 Library Dashboard</h2>
+
+<div class="dashboard-summary">
+    <div class="summary-box">
+        <h3>Total Books</h3>
+        <p>{{ total_books }}</p>
+    </div>
+    <div class="summary-box">
+        <h3>Total Students</h3>
+        <p>{{ total_students }}</p>
+    </div>
+    <div class="summary-box">
+        <h3>Borrowed Books</h3>
+        <p>{{ borrowed_books }}</p>
+    </div>
+    <div class="summary-box">
+        <h3>Pending Returns</h3>
+        <p>{{ pending_returns }}</p>
+    </div>
+</div>
+
+<hr>
+
+<h3>📘 Borrowed Books</h3>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Student</th>
+        <th>Book</th>
+        <th>Date Borrowed</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    {% for b in borrowed %}
+    <tr>
+        <td>{{ b['id'] }}</td>
+        <td>{{ b['student'] }}</td>
+        <td>{{ b['book'] }}</td>
+        <td>{{ b['date_borrowed'] }}</td>
+        <td>{{ b['status'] }}</td>
+        <td class="action-cell">
+            <a href="{{ url_for('return_book', borrow_id=b['id']) }}" class="return-btn">Return</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<hr>
+
+<h3>➕ Borrow a Book</h3>
+<form action="{{ url_for('borrow_book') }}" method="POST" class="borrow-form">
+    <label>Select Student:</label>
+    <select name="student_id" required>
+        <option value="">Select Student</option>
+        {% for s in students %}
+        <option value="{{ s['id'] }}">{{ s['name'] }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Select Book:</label>
+    <select name="book_id" required>
+        <option value="">Select Book</option>
+        {% for b in available_books %}
+        <option value="{{ b['id'] }}">{{ b['title'] }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit" class="borrow-btn">Borrow</button>
+</form>
+{% endblock %}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>School Library System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-center">
+            <img src="{{ url_for('static', filename='library-logo.png') }}" alt="Library Logo">
+            <h1>School Library System</h1>
+        </div>
+        <div class="header-buttons">
+            <a href="#">Login</a>
+        </div>
+    </header>
+
+    <nav>
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('books') }}">Books</a>
+        <a href="{{ url_for('students') }}">Students</a>
+        <a href="{{ url_for('borrowed') }}">Borrowed</a>
+        <a href="{{ url_for('pending') }}">Pending</a>
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2025 School Library System | All rights reserved.</p>
+    </footer>
+</body>
+</html>

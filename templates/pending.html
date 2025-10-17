@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>⏳ Pending Returns</h1>
+<table>
+    <tr><th>ID</th><th>Student</th><th>Book</th><th>Date Borrowed</th></tr>
+    {% for p in pending %}
+    <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.student_name }}</td>
+        <td>{{ p.book_title }}</td>
+        <td>{{ p.date_borrowed }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
