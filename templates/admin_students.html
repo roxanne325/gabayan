@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Manage Students</h2>
+<a href="{{ url_for('admin_dashboard') }}">Back</a>
+<form method="POST" action="{{ url_for('admin_add_student') }}" style="max-width:480px; margin-top:10px;">
+  <input name="fullname" placeholder="Full name" required>
+  <input name="student_number" placeholder="Student number">
+  <input name="course" placeholder="Course">
+  <button type="submit">Add Student</button>
+</form>
+
+<table class="table" style="margin-top:12px;">
+<tr><th>Full name</th><th>Student No</th><th>Course</th><th>Actions</th></tr>
+{% for s in students %}
+<tr>
+  <td>{{ s['fullname'] }}</td>
+  <td>{{ s['student_number'] }}</td>
+  <td>{{ s['course'] }}</td>
+  <td>
+    <a href="{{ url_for('admin_edit_student', id=s['id']) }}">Edit</a>
+    <form method="POST" action="{{ url_for('admin_delete_student', id=s['id']) }}" style="display:inline;">
+      <button type="submit">Delete</button>
+    </form>
+  </td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

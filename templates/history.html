@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>My Borrow History</h2>
+<a href="{{ url_for('user_dashboard') }}">Back</a>
+{% if records %}
+  <table class="table">
+    <tr><th>Title</th><th>Borrowed</th><th>Due</th><th>Returned</th><th>Penalty</th></tr>
+    {% for r in records %}
+    <tr>
+      <td>{{ r['title'] }}</td>
+      <td>{{ r['borrow_date'] }}</td>
+      <td>{{ r['due_date'] }}</td>
+      <td>{{ r['return_date'] or '—' }}</td>
+      <td>{{ r['penalty'] or 0 }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>No history yet.</p>
+{% endif %}
+{% endblock %}

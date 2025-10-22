@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Edit Borrow Record</h2>
+<form method="POST" style="max-width:420px;">
+  <p>User: {{ rec['username'] }} • Book: {{ rec['title'] }}</p>
+  <label>Return date (iso format or leave blank)</label>
+  <input name="return_date" value="{{ rec['return_date'] or '' }}">
+  <label>Penalty</label>
+  <input name="penalty" value="{{ rec['penalty'] or 0 }}">
+  <button type="submit">Update</button>
+</form>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Edit Student</h2>
+<form method="POST" style="max-width:420px;">
+  <input name="fullname" value="{{ student['fullname'] }}" required>
+  <input name="student_number" value="{{ student['student_number'] }}">
+  <input name="course" value="{{ student['course'] }}">
+  <button type="submit">Update</button>
+</form>
+{% endblock %}

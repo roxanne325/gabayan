@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Edit Book</h2>
+<form method="POST" style="max-width:420px;">
+  <label>Title</label>
+  <input name="title" value="{{ book['title'] }}" required>
+  <label>Author</label>
+  <input name="author" value="{{ book['author'] }}">
+  <label>Available</label>
+  <select name="available">
+    <option value="1" {% if book['available'] %}selected{% endif %}>Yes</option>
+    <option value="0" {% if not book['available'] %}selected{% endif %}>No</option>
+  </select>
+  <button type="submit">Update</button>
+</form>
+{% endblock %}

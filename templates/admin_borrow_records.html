@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Borrow Records</h2>
+<a href="{{ url_for('admin_dashboard') }}">Back</a>
+<table class="table">
+<tr><th data-label="ID">ID</th><th data-label="User">User</th><th data-label="Book">Book</th><th data-label="Borrow">Borrow</th><th data-label="Due">Due</th><th data-label="Return">Return</th><th data-label="Penalty">Penalty</th><th data-label="Actions">Actions</th></tr>
+{% for r in records %}
+<tr>
+  <td>{{ r['id'] }}</td>
+  <td>{{ r['username'] }}</td>
+  <td>{{ r['title'] }}</td>
+  <td>{{ r['borrow_date'] }}</td>
+  <td>{{ r['due_date'] }}</td>
+  <td>{{ r['return_date'] or '—' }}</td>
+  <td>{{ r['penalty'] or 0 }}</td>
+  <td>
+    <a href="{{ url_for('admin_edit_borrow', id=r['id']) }}">Edit</a>
+    <form method="POST" action="{{ url_for('admin_delete_borrow', id=r['id']) }}" style="display:inline;">
+      <button type="submit">Delete</button>
+    </form>
+  </td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

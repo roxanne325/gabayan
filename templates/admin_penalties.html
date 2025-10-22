@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Penalties</h2>
+<a href="{{ url_for('admin_dashboard') }}">Back</a>
+<table class="table">
+<tr><th>ID</th><th>User</th><th>Book</th><th>Return date</th><th>Penalty</th></tr>
+{% for r in rows %}
+<tr>
+  <td>{{ r['id'] }}</td>
+  <td>{{ r['username'] }}</td>
+  <td>{{ r['title'] }}</td>
+  <td>{{ r['return_date'] }}</td>
+  <td>{{ r['penalty'] }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

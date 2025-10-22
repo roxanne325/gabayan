@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Search Books</h2>
+<form method="POST" style="max-width:420px;">
+  <input name="keyword" placeholder="title or author" value="{{ q }}">
+  <button type="submit">Search</button>
+</form>
+
+{% if books %}
+  <h3>Results</h3>
+  <table class="table">
+    <tr><th>Title</th><th>Author</th><th>Status</th></tr>
+    {% for b in books %}
+    <tr>
+      <td>{{ b['title'] }}</td>
+      <td>{{ b['author'] }}</td>
+      <td>{{ 'Available' if b['available'] else 'Not available' }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endif %}
+{% endblock %}

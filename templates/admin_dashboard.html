@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Admin Dashboard — {{ session.username }}</h2>
+<ul class="nav-list">
+  <li><a href="{{ url_for('admin_books') }}">Manage Books</a></li>
+  <li><a href="{{ url_for('admin_students') }}">Manage Students</a></li>
+  <li><a href="{{ url_for('admin_borrow_records') }}">Manage Borrow Records</a></li>
+  <li><a href="{{ url_for('admin_penalties') }}">Manage Penalties</a></li>
+  <li><a href="{{ url_for('admin_reports') }}">Reports</a></li>
+  <li><a href="{{ url_for('logout') }}">Logout</a></li>
+</ul>
+
+<p>Total books: {{ total_books }} • Students: {{ total_students }} • Borrow records: {{ total_borrows }}</p>
+{% endblock %}

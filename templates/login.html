@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="split-layout">
+    <div class="split-left">
+        <h2>LibroLink: Your School Library Hub</h2>
+        <p>LibroLink is your gateway to the school's entire collection of academic and recreational resources.</p>
+        <p>Our mission is to support student learning and research by making book borrowing simple, fast, and organized. Track your borrowed items, see your history, and find the resources you need for success.</p>
+        <p><strong>Key Features:</strong></p>
+        <ul>
+            <li>Real-time availability status</li>
+            <li>Easy 7-day borrowing period</li>
+            <li>Automated penalty calculation</li>
+            <li>Comprehensive history tracking</li>
+        </ul>
+        <p>Please log in to browse the full catalog, or register a new account if you are a first-time user.</p>
+    </div>
+
+    <div class="split-right centered-content">
+        <h2>Member Login</h2>
+        <form method="POST" style="max-width:360px;">
+            <label>Username</label>
+            <input name="username" required>
+            <label>Password</label>
+            <input type="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p style="margin-top:10px;">
+            <a href="{{ url_for('register') }}">Create account</a> • 
+            <a href="{{ url_for('index') }}">Back to Home</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

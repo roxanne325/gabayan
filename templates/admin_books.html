@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Manage Books</h2>
+<a href="{{ url_for('admin_dashboard') }}">Back</a>
+<form method="POST" action="{{ url_for('admin_add_book') }}" style="max-width:420px; margin-top:10px;">
+<input name="title" placeholder="Title" required>
+<input name="author" placeholder="Author">
+<button type="submit">Add Book</button>
+</form>
+
+<table class="table" style="margin-top:12px;">
+<tr><th data-label="Title">Title</th><th data-label="Author">Author</th><th data-label="Available">Available</th><th data-label="Actions">Actions</th></tr>
+{% for b in books %}
+<tr>
+<td>{{ b['title'] }}</td>
+<td>{{ b['author'] }}</td>
+<td>{{ 'Yes' if b['available'] else 'No' }}</td>
+<td>
+<a href="{{ url_for('admin_edit_book', id=b['id']) }}">Edit</a>
+<form method="POST" action="{{ url_for('admin_delete_book', id=b['id']) }}" style="display:inline;">
+<button type="submit">Delete</button>
+</form>
+</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
