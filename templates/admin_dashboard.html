@@ -1,14 +1,54 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Admin Dashboard — {{ session.username }}</h2>
-<ul class="nav-list">
-  <li><a href="{{ url_for('admin_books') }}">Manage Books</a></li>
-  <li><a href="{{ url_for('admin_students') }}">Manage Students</a></li>
-  <li><a href="{{ url_for('admin_borrow_records') }}">Manage Borrow Records</a></li>
-  <li><a href="{{ url_for('admin_penalties') }}">Manage Penalties</a></li>
-  <li><a href="{{ url_for('admin_reports') }}">Reports</a></li>
-  <li><a href="{{ url_for('logout') }}">Logout</a></li>
-</ul>
 
-<p>Total books: {{ total_books }} • Students: {{ total_students }} • Borrow records: {{ total_borrows }}</p>
+<div class="dashboard-cards">
+  <div class="card">
+    <a href="{{ url_for('admin_books') }}">
+      <h3>📚 Manage Books</h3>
+      <p>Add, edit, and remove books in the library collection.</p>
+    </a>
+  </div>
+
+  <div class="card">
+    <a href="{{ url_for('admin_students') }}">
+      <h3>👩‍🎓 Manage Students</h3>
+      <p>View, register, or update student records easily.</p>
+    </a>
+  </div>
+
+  <div class="card">
+    <a href="{{ url_for('admin_borrow_records') }}">
+      <h3>📖 Manage Borrow Records</h3>
+      <p>Track book borrowing and returning details.</p>
+    </a>
+  </div>
+
+  <div class="card">
+    <a href="{{ url_for('admin_penalties') }}">
+      <h3>💰 Manage Penalties</h3>
+      <p>Monitor and handle overdue fines efficiently.</p>
+    </a>
+  </div>
+
+  <div class="card">
+    <a href="{{ url_for('admin_reports') }}">
+      <h3>📊 Reports</h3>
+      <p>Generate and download library activity reports.</p>
+    </a>
+  </div>
+
+  <div class="card logout-card">
+    <a href="{{ url_for('logout') }}">
+      <h3>🚪 Logout</h3>
+      <p>Sign out of the admin account securely.</p>
+    </a>
+  </div>
+</div>
+
+<p class="summary">
+  📘 Total Books: {{ total_books }} |
+  🎓 Students: {{ total_students }} |
+  🕮 Borrow Records: {{ total_borrows }}
+</p>
 {% endblock %}

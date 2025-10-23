@@ -15,11 +15,11 @@
 <td>{{ b['title'] }}</td>
 <td>{{ b['author'] }}</td>
 <td>{{ 'Yes' if b['available'] else 'No' }}</td>
-<td>
-<a href="{{ url_for('admin_edit_book', id=b['id']) }}">Edit</a>
-<form method="POST" action="{{ url_for('admin_delete_book', id=b['id']) }}" style="display:inline;">
-<button type="submit">Delete</button>
-</form>
+<td class="action-buttons">
+  <a href="{{ url_for('admin_edit_book', id=b['id']) }}">Edit</a>
+  <form method="POST" action="{{ url_for('admin_delete_book', id=b['id']) }}">
+    <button type="submit">Delete</button>
+  </form>
 </td>
 </tr>
 {% endfor %}

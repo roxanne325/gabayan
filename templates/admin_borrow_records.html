@@ -9,16 +9,16 @@
   <td>{{ r['id'] }}</td>
   <td>{{ r['username'] }}</td>
   <td>{{ r['title'] }}</td>
-  <td>{{ r['borrow_date'] }}</td>
-  <td>{{ r['due_date'] }}</td>
+  <td>{{ r['borrow_date'][:10] }}</td>
+  <td>{{ r['due_date'][:10] }}</td>
   <td>{{ r['return_date'] or '—' }}</td>
   <td>{{ r['penalty'] or 0 }}</td>
-  <td>
-    <a href="{{ url_for('admin_edit_borrow', id=r['id']) }}">Edit</a>
-    <form method="POST" action="{{ url_for('admin_delete_borrow', id=r['id']) }}" style="display:inline;">
-      <button type="submit">Delete</button>
-    </form>
-  </td>
+  <td class="action-buttons">
+  <a href="{{ url_for('admin_edit_borrow', id=r['id']) }}">Edit</a>
+  <form method="POST" action="{{ url_for('admin_delete_borrow', id=r['id']) }}">
+    <button type="submit">Delete</button>
+  </form>
+</td>
 </tr>
 {% endfor %}
 </table>
