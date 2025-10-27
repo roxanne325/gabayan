@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Manage Books</h2>
-<a href="{{ url_for('admin_dashboard') }}">Back</a>
-<form method="POST" action="{{ url_for('admin_add_book') }}" style="max-width:420px; margin-top:10px;">
+<a href="{{ url_for('librarian_dashboard') }}">Back</a>
+<form method="POST" action="{{ url_for('librarian_add_book') }}" style="max-width:420px; margin-top:10px;">
 <input name="title" placeholder="Title" required>
 <input name="author" placeholder="Author">
 <button type="submit">Add Book</button>
@@ -16,8 +16,8 @@
 <td>{{ b['author'] }}</td>
 <td>{{ 'Yes' if b['available'] else 'No' }}</td>
 <td class="action-buttons">
-  <a href="{{ url_for('admin_edit_book', id=b['id']) }}">Edit</a>
-  <form method="POST" action="{{ url_for('admin_delete_book', id=b['id']) }}">
+  <a href="{{ url_for('librarian_edit_book', id=b['id']) }}">Edit</a>
+  <form method="POST" action="{{ url_for('librarian_delete_book', id=b['id']) }}">
     <button type="submit">Delete</button>
   </form>
 </td>

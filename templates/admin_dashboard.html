@@ -1,38 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Admin Dashboard — {{ session.username }}</h2>
+<h2>Librarian Dashboard — {{ session.username }}</h2>
 
 <div class="dashboard-cards">
   <div class="card">
-    <a href="{{ url_for('admin_books') }}">
+    <a href="{{ url_for('librarian_books') }}">
       <h3>📚 Manage Books</h3>
       <p>Add, edit, and remove books in the library collection.</p>
     </a>
   </div>
 
   <div class="card">
-    <a href="{{ url_for('admin_students') }}">
+    <a href="{{ url_for('librarian_students') }}">
       <h3>👩‍🎓 Manage Students</h3>
       <p>View, register, or update student records easily.</p>
     </a>
   </div>
 
   <div class="card">
-    <a href="{{ url_for('admin_borrow_records') }}">
+    <a href="{{ url_for('librarian_borrow_records') }}">
       <h3>📖 Manage Borrow Records</h3>
       <p>Track book borrowing and returning details.</p>
     </a>
   </div>
 
   <div class="card">
-    <a href="{{ url_for('admin_penalties') }}">
+    <a href="{{ url_for('librarian_penalties') }}">
       <h3>💰 Manage Penalties</h3>
       <p>Monitor and handle overdue fines efficiently.</p>
     </a>
   </div>
 
   <div class="card">
-    <a href="{{ url_for('admin_reports') }}">
+    <a href="{{ url_for('librarian_reports') }}">
       <h3>📊 Reports</h3>
       <p>Generate and download library activity reports.</p>
     </a>
@@ -41,7 +41,7 @@
   <div class="card logout-card">
     <a href="{{ url_for('logout') }}">
       <h3>🚪 Logout</h3>
-      <p>Sign out of the admin account securely.</p>
+      <p>Sign out of the Librarian account securely.</p>
     </a>
   </div>
 </div>

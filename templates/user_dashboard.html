@@ -1,48 +1,50 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>User Dashboard — {{ session.username }}</h2>
+<h2>Student Dashboard — {{ session.student_fullname }}</h2>
 
 <ul class="dashboard-nav">
-    <li><a href="{{ url_for('index') }}">Home</a></li>
-    <li><a href="{{ url_for('my_history') }}">My Borrow History</a></li>
-    <li class="logout-item"><a href="{{ url_for('logout') }}">Logout</a></li> </ul>
+    <li><a href="{{ url_for('index') }}">Home</a></li>
+    <li><a href="{{ url_for('my_history') }}">My Borrow History</a></li>
+    <li class="logout-item"><a href="{{ url_for('logout') }}">Logout</a></li> </ul>
 
 <h3>Available Books</h3>
 {% if available %}
-  <table class="table">
-    <tr><th>Title</th><th>Author</th><th>Action</th></tr>
-    {% for b in available %}
-    <tr>
-      <td>{{ b['title'] }}</td>
-      <td>{{ b['author'] }}</td>
-      <td>
-        <form method="POST" action="{{ url_for('borrow_book', book_id=b['id']) }}">
-          <button type="submit">Borrow</button>
-        </form>
-      </td>
-    </tr>
-    {% endfor %}
-  </table>
+  <table class="table">
+    <tr><th>Title</th><th>Author</th><th>Action</th></tr>
+    {% for b in available %}
+    <tr>
+      <td>{{ b['title'] }}</td>
+      <td>{{ b['author'] }}</td>
+      <td>
+        <form method="POST" action="{{ url_for('borrow_book', book_id=b['id']) }}">
+          <button type="submit">Borrow</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
 {% else %}
-  <p>No available books.</p>
+  <p>No available books.</p>
 {% endif %}
 
-<h3>Your Borrowed Books </h3>
+<h3>Your Borrowed Books </h3>
 {% if borrowed %}
-  <table class="table">
-    <tr><th>Title</th><th>Borrow Date</th><th>Due Date</th><th>Action</th></tr>
-    {% for r in borrowed %}
-    <tr>
-      <td>{{ r['title'] }}</td>
-      <td>{{ r['borrow_date'][:10] }}</td>       <td>{{ r['due_date'][:10] }}</td>         <td>
-        <form method="POST" action="{{ url_for('return_book', record_id=r['id']) }}">
-          <button type="submit">Return</button>
-        </form>
-      </td>
-    </tr>
-    {% endfor %}
-  </table>
+  <table class="table">
+    <tr><th>Title</th><th>Borrow Date</th><th>Due Date</th><th>Action</th></tr>
+    {% for r in borrowed %}
+    <tr>
+      <td>{{ r['title'] }}</td>
+      <td>{{ r['borrow_date'][:10] }}</td>        
+      <td>{{ r['due_date'][:10] }}</td>        
+      <td>
+        <form method="POST" action="{{ url_for('return_book', record_id=r['id']) }}">
+          <button type="submit">Return</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
 {% else %}
-  <p>No current borrows.</p>
+  <p>No current borrows.</p>
 {% endif %}
 {% endblock %}

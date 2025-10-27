@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Edit Student</h2>
+<a href="{{ url_for('librarian_students') }}">Back</a>
 <form method="POST" style="max-width:420px;">
+  <label>Full Name</label>
   <input name="fullname" value="{{ student['fullname'] }}" required>
+  <label>Student Number</label>
   <input name="student_number" value="{{ student['student_number'] }}">
+  <label>Course</label>
   <input name="course" value="{{ student['course'] }}">
-  <button type="submit">Update</button>
+
+  <div style="margin: 15px 0; padding: 10px; border: 1px dashed #ccc; background-color: #f9f9f9;">
+    <strong>Student Login Details:</strong><br>
+    ID: {{ student['student_number'] }}<br>
+    Last Name: <strong>{{ student['lastname'] }}</strong> (Automatically set from Full Name)
+  </div>
+
+  <button type="submit">Update Student</button>
 </form>
 {% endblock %}

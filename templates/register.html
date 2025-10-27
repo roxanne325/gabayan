@@ -2,28 +2,105 @@
 {% block content %}
 <div class="split-layout">
     <div class="split-left">
-        <h2>Why Register?</h2>
-        <p>Creating a LibroLink account gives you full access to all borrowing and tracking services.</p>
-        <p>It only takes a moment to set up your profile. Once registered, you can immediately begin browsing and borrowing any available book from our shelves.</p>
-        <p>Your privacy and academic record are protected. We use your details only to manage your borrowing history and ensure books are returned on time.</p>
-        <p>Need help? Visit the main library desk during operating hours.</p>
+        <h2>LibroLink: Account Registration</h2>
+        <p>Welcome to LibroLink. Please select whether you are a **Student** or a **Librarian** to proceed with account creation.</p>
+        <p><strong>Students:</strong> Register here to immediately start borrowing books.</p>
+        <p><strong>Librarians:</strong> Register here for administrative access to manage the library inventory and student records.</p>
     </div>
 
     <div class="split-right centered-content">
-        <h2>Create Account</h2>
-        <form method="POST" style="max-width:420px;">
+        <h2>New Account</h2>
+
+        <div style="margin-bottom: 20px;">
+            <button id="show-student" class="tab-button active" onclick="showRegForm('student-reg-form', 'show-student')">Student</button>
+            <button id="show-librarian" class="tab-button" onclick="showRegForm('librarian-reg-form', 'show-librarian')">Librarian</button>
+        </div>
+
+        <form method="POST" id="student-reg-form" class="reg-form" style="max-width:420px;">
+            <h3>Student Registration</h3>
+            <input type="hidden" name="register_type" value="student">
+            
+            <label>Full Name</label>
+            <input name="fullname" placeholder="e.g., Jane M. Doe" required>
+
+            <label>Student Number (Unique ID)</label>
+            <input name="student_number" placeholder="e.g., S2025123" required>
+
+            <label>Course / Program</label>
+            <input name="course" placeholder="e.g., BS Information Technology" required>
+
+            <p class="text-sm mt-3 mb-4 text-gray-600">
+                **Note:** Your login key will be your **Last Name** and your **Student Number**.
+            </p>
+            
+            <button type="submit">Register Student Account</button>
+        </form>
+
+        <form method="POST" id="librarian-reg-form" class="reg-form hidden" style="max-width:420px;">
+            <h3>Librarian Registration</h3>
+            <input type="hidden" name="register_type" value="librarian">
+            
             <label>Full name</label>
             <input name="fullname" required>
+            
             <label>Username</label>
             <input name="username" required>
+            
             <label>Password</label>
             <input type="password" name="password" required>
-            <button type="submit">Register</button>
+            
+            <button type="submit">Register Librarian Account</button>
         </form>
-        <p style="margin-top:10px;">
-            <a href="{{ url_for('login') }}">Back to Login</a> • 
+        
+        <p style="margin-top:20px;">
+            <a href="{{ url_for('login') }}">Already have an account? Login here.</a> •
             <a href="{{ url_for('index') }}">Back to Home</a>
         </p>
     </div>
 </div>
+
+<style>
+    .tab-button {
+        padding: 10px 15px;
+        border: 1px solid #ccc;
+        background-color: #f4f4f4;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.2s;
+        border-radius: 5px 5px 0 0;
+        margin-right: 5px;
+    }
+    .tab-button.active {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+        border-bottom: none; 
+    }
+    .reg-form {
+        border: 1px solid #007bff;
+        padding: 20px;
+        border-radius: 0 5px 5px 5px;
+    }
+    .reg-form.hidden {
+        display: none;
+    }
+</style>
+
+<script>
+    function showRegForm(formId, buttonId) {
+        document.querySelectorAll('.reg-form').forEach(form => {
+            form.classList.add('hidden');
+        });
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.classList.remove('active');
+        });
+
+        document.getElementById(formId).classList.remove('hidden');
+        document.getElementById(buttonId).classList.add('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        showRegForm('student-reg-form', 'show-student');
+    });
+</script>
 {% endblock %}

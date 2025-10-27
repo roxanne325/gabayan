@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Reports</h2>
-<a href="{{ url_for('admin_dashboard') }}">Back</a>
+<a href="{{ url_for('librarian_dashboard') }}">Back</a>
 <p>Total books: {{ total_books }} • Currently borrowed: {{ borrowed }} • Returned: {{ returned }}</p>
-<p><a href="{{ url_for('admin_reports_download') }}">Download full borrow report (CSV)</a></p>
+<p><a href="{{ url_for('librarian_reports_download') }}">Download full borrow report (CSV)</a></p>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>My Borrow History</h2>
-<a href="{{ url_for('user_dashboard') }}">Back</a>
+<a href="{{ url_for('student_dashboard') }}">Back</a>
 {% if records %}
   <table class="table">
     <tr><th>Title</th><th>Borrowed</th><th>Due</th><th>Returned</th><th>Penalty</th></tr>
